@@ -1,0 +1,96 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Тестовое задание 'Регеора Девелопмент'",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/": {},
+        "/api/v1/patients": {
+            "get": {
+                "summary": "Get all patients",
+                "operationId": "3be967dcb3369c45992d2c49c266ed0f",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PatientResource"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Store a new patient",
+                "operationId": "54e8e48789b104009f5f699d8f7b51b8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PatientStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PatientResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "PatientStoreRequest": {
+                "required": [
+                    "first_name",
+                    "last_name",
+                    "birthdate"
+                ],
+                "properties": {
+                    "first_name": {
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "type": "string"
+                    },
+                    "birthdate": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "type": "object"
+            },
+            "PatientResource": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "birthdate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "age": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
